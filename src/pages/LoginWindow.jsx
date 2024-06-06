@@ -53,7 +53,7 @@ function LoginWindow() {
           onChange={handleChangePassword}
         />
         <button className="log-window-button" onClick={handleLogin}>Login</button>
-        <AuthProvider></AuthProvider>
+        {/* <AuthProvider></AuthProvider> */}
       </div>
     </div>
   );

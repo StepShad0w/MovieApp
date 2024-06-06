@@ -10,55 +10,66 @@ import { GiSettingsKnobs } from "react-icons/gi";
 import { LuLogOut } from "react-icons/lu";
 import { BiSolidCoffee } from "react-icons/bi";
 import { NavLink } from 'react-router-dom'
+import { SignOut } from './components/SignOut'; // Перейменування з SignOut на signOut
+import { useNavigate } from 'react-router-dom'
+
 export default function MainWindow() {
-  return (
-    <>
-    <div className="menu">
-        <div className="watch">
-        <BiSolidCoffee className='icon-big' />
-        <h2><strong>watch</strong></h2>
-        </div>
-        <div className="mainMenu">
-            <div className="element">
-            <BiFilm className='icon' />
-            <NavLink to='/Home' className="navLink" > Home</NavLink>
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        SignOut().then(() => {
+            navigate('/');
+        }).catch((error) => {
+            console.error('Sign out error:', error)
+        });
+    }
+
+    return (
+        <>
+            <div className="menu">
+                <div className="watch">
+                    <BiSolidCoffee className='icon-big' />
+                    <h2><strong>watch</strong></h2>
+                </div>
+                <div className="mainMenu">
+                    <div className="element">
+                        <BiFilm className='icon' />
+                        <NavLink to='/Home' className="navLink" > Home</NavLink>
+                    </div>
+                    <div className="element">
+                        <FaRegHeart className='icon' />
+                        <NavLink to='/Favourites'  className="navLink"> Favourites</NavLink>
+                    </div>
+                    <div className="element">
+                        <FaArrowTrendUp className='icon' />
+                        <NavLink to='/Trending' className="navLink" > Tranding</NavLink>
+                    </div>
+                    <div className="element">
+                        <LuCalendar className='icon' />
+                        <NavLink to='/Coming' className="navLink" > Coming soon</NavLink>
+                    </div>
+                </div>
+                <div className="comm">
+                    <div className="element">
+                        <GoPeople className='icon' />
+                        <p>Community</p>
+                    </div>
+                    <div className="element">
+                        <IoChatbubbleOutline className='icon' />
+                        <p>Social</p>
+                    </div>
+                </div>
+                <div className="addmenu">
+                    <div className="element">
+                        <GiSettingsKnobs className='icon' />
+                        <p>Setting</p>
+                    </div>
+                    <div className="element">
+                        <LuLogOut className='icon' />
+                        <p onClick={handleSignOut}>Logout</p> {/* Виклик handleSignOut при кліку */}
+                    </div>
+                </div>
             </div>
-            <div className="element">
-            <FaRegHeart className='icon' />
-            <NavLink to='/Favourites'  className="navLink"> Favourites</NavLink>
-                
-            </div>
-            <div className="element">
-            <FaArrowTrendUp className='icon' />
-            <NavLink to='/Trending' className="navLink" > Tranding</NavLink>
-            </div>
-            <div className="element">
-            <LuCalendar className='icon' />
-            <NavLink to='/Coming' className="navLink" > Coming soon</NavLink>
-                
-            </div>
-        </div>
-        <div className="comm">
-            <div className="element">
-            <GoPeople className='icon' />
-                <p>Community</p>
-            </div>
-            <div className="element">
-            <IoChatbubbleOutline className='icon' />
-                <p>Social</p>
-            </div>
-        </div>
-        <div className="addmenu">
-            <div className="element">
-            <GiSettingsKnobs className='icon' />
-                <p>Setting</p>
-            </div>
-            <div className="element">
-            <LuLogOut className='icon' />
-                <p>Logout</p>
-            </div>
-        </div>
-    </div>
-    </>
-  )
+        </>
+    )
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { LuBell } from "react-icons/lu";
 import "./TopMenu.css";
+import AuthDeteils from './components/AuthDeteils';
 
-export default function TopMenu({ user }) {
+export default function TopMenu( ) {
   return (
     <>
       <div className="menutop">
@@ -16,7 +17,7 @@ export default function TopMenu({ user }) {
           <HiOutlineMagnifyingGlass className='icon' />
           <LuBell className='icon' />
           <div className="acount">
-            <p>{user ? user.displayName : 'Guest'}</p>
+            <p> <AuthDeteils></AuthDeteils></p>
           </div>
         </div>
       </div>

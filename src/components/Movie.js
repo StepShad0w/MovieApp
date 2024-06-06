@@ -31,7 +31,11 @@ export default function Movie() {
         <Slider {...settings}>
           {movies.map((movie, index) => (
             <div className='movie-element' key={index} onClick={() => handleMovieClick(movie)}>
+              <div className='moviehid'>
+
               <img className='movies' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+              </div>
+
               <div className='description'>
                 <div className='title'>{movie.title}</div>
                 <div className='year-data'>{movie.release_date}</div>

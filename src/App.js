@@ -19,7 +19,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <UserProvider>
+        
         <div className="App">
           
           <Routes>
@@ -31,7 +31,7 @@ function App() {
             <Route path="watchnow/:id" element={<WatchNow />} />
           </Routes>
         </div>
-        </UserProvider>
+       
       </BrowserRouter>
     </Provider>
   );
