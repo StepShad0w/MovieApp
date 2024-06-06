@@ -1,0 +1,68 @@
+.wrapper{
+    background: url(../images/proector.png) no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    margin: 0;
+}
+.header{
+    height: 100vh;
+    padding: 0px 0px 0px 0px;
+    /*background: rgba(52, 0, 100, 0.3);*/
+    background: linear-gradient(to bottom right, rgba(97, 0, 194, 0.7), rgba(25, 24, 23, 1));
+
+    
+
+    align-content: center;
+}
+.log-window{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+.window{
+    align-items: center;
+    align-content: center;
+}
+.watch{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.coffee{
+    color: white;
+    align-self: center;
+    font-size: 22px;
+}
+.watch-text{
+    color: white;
+    font-size: 22px;
+}
+p{
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+.sign{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.log-button{
+    background-color: #6100C2;
+    border-radius: 15px;
+    width: 225px;
+    height: 54px;
+    border: 0px solid;
+    color: white;
+    font-size: 18px;
+    margin: 25px 0 15px 0;
+}
+.log-button:hover{
+    background-color: #4b0294;
+}

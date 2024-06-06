@@ -1,0 +1,14 @@
+.menu-window{
+    display: flex;
+    flex-direction: row;
+}
+.menu-windows{
+    display: flex;
+    flex-direction: row;
+}
+.main-div{
+    overflow: hidden;
+    background:  #21201E;
+    box-shadow:  0px 0px red, inset -0em 0 3em rgb(87 1 137);
+    margin-left: 274px;
+}

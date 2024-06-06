@@ -1,0 +1,30 @@
+.big-window-show{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+.movie-form-show{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    width: 96%;
+}
+.main-image-show{
+    width:534px ;
+    height: 431px;
+    border-radius: 20px;
+    margin-left: 50px;
+}
+.main-title-show{
+font-size: 30px;
+}
+.name-range{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.range{
+    display: flex;
+    align-self: center;
+}
