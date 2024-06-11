@@ -46,7 +46,7 @@
   .moviehid{
     display: block;
     width: inherit;
-    height: calc(100% - 30px);
+    height: 350px;
     text-decoration: none;
     overflow: hidden;
     border-radius: 20px;
@@ -101,4 +101,51 @@
     height: 300px;
     width: 20px;
     margin: 10px;
+  }
+  .favorite{
+    position: relative;
+    display: flex;
+    z-index: 1;
+    align-content: end;
+    align-self: end;
+    bottom: 350px;
+    font-size: 40px;
+    justify-content: end;
+  }
+  .favorite-main{
+    position: relative;
+    display: flex;
+    z-index: 1;
+    align-content: end;
+    font-size: 40px;
+  }
+  .fav-fone{
+    background: linear-gradient(to top left, #ffffff, #c7c7c7);
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    opacity: 0.9;
+    display: flex;
+  }
+  .fav-fone-main{
+    background: linear-gradient(to top left, #ffffff, #c7c7c7);
+    border-radius: 10px;
+    opacity: 0.9;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    align-self: center;
+}
+  
+  .favorite-button{
+    color:  #6100C2;
+    font-size: 20px;
+    padding: 10px;
+    
+  }
+
+  
+  .watch-but{
+    display: flex;
+    margin: 25px 0 15px 0;
+    gap: 5px;
   }

@@ -6,7 +6,7 @@ import { FaImdb } from "react-icons/fa";
 import MainWindow from '../MainWindow';
 import TopMenu from '../TopMenu';
 import "./CSS/WatchNow.css";
-import MoviesSlicer, { fetchMovieById, fetchVideo, getMovieById, selectTrailerById } from '../components/slices/MoviesSlicer';
+import MoviesSlicer, { fetchMovieById, fetchVideo, getMovieById, selectTrailerById, fetchImagesById } from '../components/slices/MoviesSlicer';
 
 export default function WatchNow() {
   const dispatch = useDispatch();
@@ -14,6 +14,8 @@ export default function WatchNow() {
   const movieId = location.state?.movieId;
   const movieById = useSelector((state) => state.movies.movieById)
   const trailerById = useSelector(selectTrailerById)
+
+  const imagesById = useSelector((state)=>state.movies.imagesById)
 
   console.log(trailerById,321321);
   const {id} = useParams()
@@ -25,8 +27,10 @@ export default function WatchNow() {
     if (movieId) {
       dispatch(fetchVideo(movieId))
       dispatch(fetchMovieById(id))
+      dispatch(fetchImagesById(id))
     }
   }, [movieId]);
+  console.log(imagesById, 2223)
 
   return (
     <>

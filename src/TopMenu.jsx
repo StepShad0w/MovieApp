@@ -3,13 +3,15 @@ import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { LuBell } from "react-icons/lu";
 import "./TopMenu.css";
 import AuthDeteils from './components/AuthDeteils';
+import { NavLink } from 'react-router-dom';
 
 export default function TopMenu( ) {
   return (
     <>
       <div className="menutop">
-        <div className="left-row">
-          <p>Movies</p>
+       <section className='whatwesee'>
+       <div className="left-row">
+       <NavLink to='/Coming' className="navLink" > Movies</NavLink>
           <p>Series</p>
           <p>Documentaries</p>
         </div>
@@ -20,7 +22,12 @@ export default function TopMenu( ) {
             <p> <AuthDeteils></AuthDeteils></p>
           </div>
         </div>
+       </section>
+       <section className='whatwedont' >
+        
+       </section>
       </div>
+      
     </>
   );
 }
