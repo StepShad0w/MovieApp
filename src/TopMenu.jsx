@@ -5,17 +5,13 @@ import "./TopMenu.css";
 import AuthDeteils from './components/AuthDeteils';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-
-  selectFilteredMovies,
-  fetchSearch
-  
-} from './components/slices/MoviesSlicer';
+import { selectFilteredMovies, fetchSearch } from './components/slices/MoviesSlicer';
 
 const Modal = ({ show, handleClose, filmName, setFilmName, filteredMovies }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [timer, setTimer] = useState(null);
+  
 
   if (!show) return null;
 
@@ -26,18 +22,17 @@ const Modal = ({ show, handleClose, filmName, setFilmName, filteredMovies }) => 
       dispatch(fetchSearch(value.trim())); 
     }, 800)); 
   };
-  
 
   const handleFilmClick = (movie) => {
     navigate(`/watchnow/${movie.id}`, { state: { movieId: movie.id } });
   };
 
-  // Функція для унікальних фільмів
   const uniqueMovies = Array.from(new Set(filteredMovies.map((movie) => movie.id)))
     .map((id) => filteredMovies.find((movie) => movie.id === id));
-  const corect = uniqueMovies.filter(movie => movie.poster_path)
+  const correct = uniqueMovies.filter(movie => movie.poster_path);
+
   return (
-    <div className="modal" onClick={handleClose}>
+    <div className={`modal ${show ? 'active' : ''}`} onClick={handleClose}>
       <div className="modal-content-find" onClick={(e) => e.stopPropagation()}>
         <span className="close" onClick={handleClose}>&times;</span>
         <input
@@ -47,14 +42,14 @@ const Modal = ({ show, handleClose, filmName, setFilmName, filteredMovies }) => 
           placeholder="Search for movies..."
         />
         <div className="movie-list">
-          {corect.length > 0 ? (
-            corect.map((movie) => (
+          {correct.length > 0 ? (
+            correct.map((movie) => (
               <div key={movie.id} className="movie-item" onClick={() => handleFilmClick(movie)}>
                 <div className="find">
                   <img className='movies-find' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                   <div className="desk">
-                  <p className='movie-list-in'>{movie.title}</p>
-                  <p className='date'>{movie.release_date}</p>
+                    <p className='movie-list-in'>{movie.title}</p>
+                    <p className='date'>{movie.release_date}</p>
                   </div>
                 </div>
               </div>
@@ -83,8 +78,6 @@ const TopMenu = () => {
     setFilmName('');
   };
 
-
-
   return (
     <>
       <div className="menutop" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
@@ -102,8 +95,7 @@ const TopMenu = () => {
             </div>
           </div>
         </section>
-        <section className='whatwedont'>
-        </section>
+        <section className='whatwedont'></section>
         <Modal
           show={showModal}
           handleClose={handleCloseModal}

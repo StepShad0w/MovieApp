@@ -20,7 +20,6 @@ const Favourites = () => {
 </div>
 <div className="main-div">
 <TopMenu ></TopMenu>
-<MovieForm></MovieForm>
 <div className="rand-movies">
 
 <FavMovies></FavMovies>
