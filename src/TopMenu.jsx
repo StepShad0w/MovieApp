@@ -24,7 +24,7 @@ const Modal = ({ show, handleClose, filmName, setFilmName, filteredMovies }) => 
     clearTimeout(timer);
     setTimer(setTimeout(() => {
       dispatch(fetchSearch(value.trim())); 
-    }, 500)); 
+    }, 800)); 
   };
   
 
@@ -52,7 +52,10 @@ const Modal = ({ show, handleClose, filmName, setFilmName, filteredMovies }) => 
               <div key={movie.id} className="movie-item" onClick={() => handleFilmClick(movie)}>
                 <div className="find">
                   <img className='movies-find' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                  <p>{movie.title}</p>
+                  <div className="desk">
+                  <p className='movie-list-in'>{movie.title}</p>
+                  <p className='date'>{movie.release_date}</p>
+                  </div>
                 </div>
               </div>
             ))

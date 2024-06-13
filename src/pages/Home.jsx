@@ -7,29 +7,20 @@ import MovieForm from '../components/MovieForm'
 export default function Home() {
   return (
     <>
-   <div className="main-wrapper">
-     
-   <div className="menu-windows">
-
-    
-<div className="menu-window">
-<MainWindow></MainWindow>
-
-
-
-</div>
-<div className="main-div">
-<TopMenu ></TopMenu>
-<MovieForm></MovieForm>
-<div className="rand-movies">
-
-<Movie></Movie>
-</div>
-</div>
-</div>
-
-
-   </div>
+      <div className="main-wrapper">
+        <div className="menu-windows">
+          <div className="menu-window">
+            <MainWindow />
+          </div>
+          <div className="main-div">
+            <TopMenu />
+            <MovieForm />
+            <div className="rand-movies">
+              <Movie />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

@@ -26,7 +26,7 @@ export default function MovieForm({ movie, onClose }) {
   return (
     <div className="big-window">
       <div className="movie-form">
-        <img className='main-image' src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
+        <img className='main-image' src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />
         <div className="movie-info">
           <h2 className='main-title'>{movie.title}</h2>
           <p>{movie.release_date}</p>

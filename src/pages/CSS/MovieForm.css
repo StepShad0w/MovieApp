@@ -10,7 +10,7 @@
     width: 100%;
     position: relative;
     z-index:0 ;
-    bottom: 100px;
+    /* bottom: 100px; */
 }
 .movie{
     width: 100px;

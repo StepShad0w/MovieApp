@@ -22,7 +22,7 @@ export default function MovieShow({ movie, onClose }) {
     return (
       <div className="big-window-show">
         <div className="movie-form-show">
-          <img className='main-image-show' src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
+          <img className='main-image-show' src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />
           <div className="movie-info-sow">
            <div className="name-range">
            <h2 className='main-title-show'>{movie.title}</h2>

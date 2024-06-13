@@ -110,4 +110,14 @@
     margin-top: 50px;
     overflow-y: scroll;
   }
-  
+  .movie-item:hover .movie-list-in{
+color: rgb(60, 51, 241);
+  }
+  .desk{
+    display: flex;
+    flex-direction: column;
+  }
+  .date{
+    color: rgb(88, 86, 86);
+    opacity: 0.9;
+  }
