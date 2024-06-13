@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite, fetchMovies, selectMovies, selectFavorites } from './slices/MoviesSlicer';
+import { toggleFavorite, fetchMovies, selectMovies, selectFavorites, selectFilteredMovies } from './slices/MoviesSlicer';
 import Slider from "react-slick";
 import MovieForm from './MovieForm';
 import "../pages/CSS/Movie.css";
-import settings from './Slider'; // Import the settings
+import settings from './Slider'; 
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function Movie() {
@@ -14,7 +14,8 @@ export default function Movie() {
   const movies = useSelector(selectMovies);
   const favorites = useSelector(selectFavorites);
   const [selectedMovie, setSelectedMovie] = useState(null);
-
+  const filteredMovies = useSelector(selectFilteredMovies);
+  
   useEffect(() => {
     dispatch(fetchMovies());
   }, [dispatch]);
@@ -34,7 +35,7 @@ export default function Movie() {
     dispatch(toggleFavorite(movie));
   };
 
-  const movieToDisplay = selectedMovie || (movies.length > 0 ? movies[0] : null);
+  const movieToDisplay = selectedMovie || (filteredMovies.length > 0 ? filteredMovies[0] : movies.length > 0 ? movies[0] : null);
 
   const isFavorite = (movie) => {
     return favorites.find(fav => fav.id === movie.id);
@@ -51,7 +52,7 @@ export default function Movie() {
                 <img className='movies' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                 <div className="favorite">
                   <div className="fav-fone" onClick={(e) => {
-                      e.stopPropagation(); // Prevent triggering the parent click event
+                      e.stopPropagation(); 
                       handleFavoriteClick(movie);
                     }}>
                     {isFavorite(movie) ? <MdFavorite className='favorite-button' /> : <MdFavoriteBorder className='favorite-button' />}

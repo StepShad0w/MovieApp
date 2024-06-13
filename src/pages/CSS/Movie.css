@@ -115,7 +115,6 @@
   .favorite-main{
     position: relative;
     display: flex;
-    z-index: 1;
     align-content: end;
     font-size: 40px;
   }
@@ -147,5 +146,13 @@
   .watch-but{
     display: flex;
     margin: 25px 0 15px 0;
+    gap: 5px;
+  }
+  .movies-find{
+    width: 50px;
+  }
+  .find{
+    display: flex;
+    flex-direction: row;
     gap: 5px;
   }

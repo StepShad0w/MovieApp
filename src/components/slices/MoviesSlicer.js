@@ -10,20 +10,22 @@ const loadFavorites = () => {
 const initialState = {
   movies: [],
   trendingMovies: [],
-  popularMovies:[],
-  upcoming:[],
-  imagesByid:{},
+  popularMovies: [],
+  upcoming: [],
+  imagesByid: {},
   trailerById: {},
   movieById: {},
   favorites: loadFavorites(),
+  filteredAllMovies: [],
+  search:[],
   status: 'idle',
-  error: null
+  error: null,
 };
 
 export const fetchMovies = createAsyncThunk(
   'movies/fetchMovies',
   async () => {
-    const response = await axios.get(`${BASE_URL}discover/movie?api_key=${API_KEY}`);
+    const response = await axios.get(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
     return response.data.results;
   }
 );
@@ -76,6 +78,19 @@ export const fetchMovieById = createAsyncThunk(
   }
 );
 
+export const fetchSearch = createAsyncThunk(
+  'movies/fetchSearch',
+  async (query) => {
+    try {
+      const response = await axios.get(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=en-US&page=${1}`);
+      return response.data.results;
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+      throw error;
+    }
+  }
+);
+
 const movieSlice = createSlice({
   name: "movies",
   initialState,
@@ -90,7 +105,8 @@ const movieSlice = createSlice({
         state.favorites.push(movie);
       }
       localStorage.setItem('favorites', JSON.stringify(state.favorites));
-    }
+    },
+    
   },
   extraReducers: (builder) => {
     builder
@@ -122,16 +138,19 @@ const movieSlice = createSlice({
       })
       .addCase(fetchVideo.fulfilled, (state, action) => {
         state.trailerById = action.payload;
+      })
+      .addCase(fetchSearch.fulfilled, (state, action) => {
+        state.search = action.payload;
       });
   },
 });
 
-export const { toggleFavorite } = movieSlice.actions;
-
+export const { toggleFavorite, } = movieSlice.actions;
 export const selectMovies = (state) => state.movies.movies;
+export const selectFilteredMovies = (state) => state.movies.search;
 export const selectTrailerById = (state) => state.movies.trailerById;
 export const selectPopularMovies = (state) => state.movies.popularMovies;
-export const selectUpcomingMovies = (state)=> state.movies.upcoming;
+export const selectUpcomingMovies = (state) => state.movies.upcoming;
 export const selectFavorites = (state) => state.movies.favorites;
 
 export default movieSlice.reducer;
