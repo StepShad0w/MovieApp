@@ -42,7 +42,7 @@ export default function MainWindow() {
                     </div>
                     <div className="element">
                         <FaArrowTrendUp className='icon' />
-                        <NavLink to='/Trending' className="navLink" > Tranding</NavLink>
+                        <NavLink to='/Trending' className="navLink" > Trending</NavLink>
                     </div>
                     <div className="element">
                         <LuCalendar className='icon' />
