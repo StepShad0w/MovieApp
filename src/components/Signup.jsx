@@ -29,8 +29,8 @@ const Signup = ({ onClose }) => {
 
     return (
         <>
-            <div className="modal" onClick={onClose}>
-                <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-log" onClick={onClose}>
+                <div className="modal-content-log" onClick={e => e.stopPropagation()}>
                     <h2>Sign Up</h2>
                     <form onSubmit={register} className='modal-content-form'>
                         <input 

@@ -10,6 +10,7 @@ export default function Registration() {
 
   const handleLoginClick = () => {
     setShowLoginWindow(!showLoginWindow);
+    console.log("Login button clicked");
   }
 
   const handleRegisterClick = () => {

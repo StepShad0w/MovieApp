@@ -1,4 +1,4 @@
-.modal {
+.modal-log {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
     }
   }
   
-  .modal-content {
+  .modal-content-log {
     display: flex;
     flex-direction: column;
     gap: 15px;
