@@ -66,7 +66,7 @@ export default function MainWindow() {
                     </div>
                     <div className="element">
                         <LuLogOut className='icon' />
-                        <p onClick={handleSignOut}>Logout</p> {/* Виклик handleSignOut при кліку */}
+                        <p  className="navLink"onClick={handleSignOut}>Logout</p> {/* Виклик handleSignOut при кліку */}
                     </div>
                 </div>
             </div>
