@@ -117,10 +117,26 @@
     /* right: -50%; */
     width: 0;
 }
+.hide-radio{
+    position: absolute;
+    right: -500%;
+}
+.show-radio{
+    position: absolute;
+    right: 110%;
+    top: 210%;
+    width: 270px;
+    border-radius: 20px;
+    transition: width 1s ease-in-out;
+    padding-left: 30px;
+    background-color: rgb(205, 29, 29);
+    color: white;
+}
 .showinput {
     position: absolute;
     right: 100%;
     width: 280px;
+    top: -20%;
     transition: width 1s ease-in-out;
     padding-left: 30px;
     background-color: rgb(205, 29, 29);
@@ -128,11 +144,18 @@
 }
 .lupa{
     position: absolute;
-    color: black;
-    right: 385%;
+    color: rgb(255, 255, 255);
+    right: 360%;
+    top: -5%;
     transition: 1s ease-in-out;
 }
 .white-lupa{
     position: absolute;
+    top: 10%;
     right: 80%;
+}
+.input-plus-optional{
+    display: flex;
+    flex-direction: column;
+
 }

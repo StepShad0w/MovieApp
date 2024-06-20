@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import YouTube from 'react-youtube';
+import Slider from "react-slick";
 import { FaImdb } from "react-icons/fa";
 import MainWindow from '../MainWindow';
 import TopMenu from '../TopMenu';
 import "./CSS/WatchNow.css";
-import MoviesSlicer, { fetchMovieById, fetchVideo, getMovieById, selectTrailerById, fetchImagesById } from '../components/slices/MoviesSlicer';
+import settings from '../components/SliderForMany';
+import { fetchMovieById, fetchVideo, getMovieById, selectTrailerById, fetchImagesById, selectMoviesImagesById } from '../components/slices/MoviesSlicer';
 
 export default function WatchNow() {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ export default function WatchNow() {
   const movieById = useSelector((state) => state.movies.movieById)
   const trailerById = useSelector(selectTrailerById)
 
-  const imagesById = useSelector((state)=>state.movies.imagesById)
+  const imagesById = useSelector((state)=> state.movies.imagesById)
 
   console.log(trailerById,321321);
   const {id} = useParams()
@@ -23,14 +25,14 @@ export default function WatchNow() {
   
   
 
+  console.log(imagesById, 2223)
   useEffect(() => {
     if (movieId) {
       dispatch(fetchVideo(movieId))
       dispatch(fetchMovieById(id))
-      dispatch(fetchImagesById(id))
+      dispatch(fetchImagesById(movieId))
     }
-  }, [movieId]);
-  console.log(imagesById, 2223)
+  }, [movieId, dispatch]);
 
   return (
     <>
@@ -82,6 +84,19 @@ export default function WatchNow() {
                 <p className='h3'>{movieById.overview}</p>
               </div>
             )}
+            <div className="images-box">
+              <div className="person-images">
+              <Slider {...settings}>
+                {imagesById?.map((img) => (
+                 <div className="mov-img">
+                   <img className='img'
+                    src={"https://image.tmdb.org/t/p/w200" + img?.file_path}
+                  />
+                 </div>
+                ))}
+                </Slider>
+              </div>
+            </div>
             <div className="video-box">
               {trailerById ? (
                 

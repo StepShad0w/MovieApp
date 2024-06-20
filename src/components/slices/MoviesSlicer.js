@@ -12,12 +12,16 @@ const initialState = {
   trendingMovies: [],
   popularMovies: [],
   upcoming: [],
-  imagesByid: {},
+  imagesById: [],
   trailerById: {},
   movieById: {},
+  personById:{},
   favorites: loadFavorites(),
   filteredAllMovies: [],
   search:[],
+  filteredMovies: [],
+  filteredPeople: [],
+  personImagesById: [],
   status: 'idle',
   error: null,
 };
@@ -41,10 +45,17 @@ export const fetchTrendingMovies = createAsyncThunk(
 export const fetchImagesById = createAsyncThunk(
   'movies/fetchImagesById',
   async (id) => {
-    const response = await axios.get(`${BASE_URL}movie/${id}/images?api_key=${API_KEY}`);
-    return response.data.results.length > 0 ? response.data.results[0] : null;
-  }
+    try {
+      console.log("Calling fetchPersonImagesById with ID:", id);
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`);
+      console.log("fetchPersonImagesById response:", response.data.backdrops);
+      return response.data.backdrops.length > 0 ? response.data.backdrops : [];
+    } catch (error) {
+      console.error("Error fetching person images by ID:", error);
+      throw error;
+    }}
 );
+
 
 export const fetchUpcomingMovies = createAsyncThunk(
   'movies/fetchUpcomingMovies',
@@ -77,6 +88,11 @@ export const fetchMovieById = createAsyncThunk(
     return response.data;
   }
 );
+export const fetchPersonById = createAsyncThunk('movies/fetchPersonById', async (id) => {
+  const response = await axios.get(`${BASE_URL}person/${id}?api_key=${API_KEY}`);
+  
+  return response.data;
+});
 
 export const fetchSearch = createAsyncThunk(
   'movies/fetchSearch',
@@ -90,6 +106,26 @@ export const fetchSearch = createAsyncThunk(
     }
   }
 );
+export const fetchSearchPeople = createAsyncThunk(
+  'movies/fetchSearchPeople',
+  async (query) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&query=${query}`);
+    return response.data.results;
+  }
+);
+
+export const fetchPersonImagesById = createAsyncThunk('movies/fetchPersonImagesById', async (id) => {
+  try {
+    console.log("Calling fetchPersonImagesById with ID:", id);
+    const response = await axios.get(`https://api.themoviedb.org/3/person/${id}/images?api_key=${API_KEY}`);
+    console.log("fetchPersonImagesById response:", response.data);
+    return response.data.profiles.length > 0 ? response.data.profiles : [];
+  } catch (error) {
+    console.error("Error fetching person images by ID:", error);
+    throw error;
+  }
+});
+
 
 const movieSlice = createSlice({
   name: "movies",
@@ -128,7 +164,7 @@ const movieSlice = createSlice({
         state.movieById = action.payload;
       })
       .addCase(fetchImagesById.fulfilled, (state, action) => {
-        state.imagesByid = action.payload;
+        state.imagesById = action.payload;
       })
       .addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
         state.upcoming = action.payload;
@@ -141,6 +177,15 @@ const movieSlice = createSlice({
       })
       .addCase(fetchSearch.fulfilled, (state, action) => {
         state.search = action.payload;
+      })
+      .addCase(fetchSearchPeople.fulfilled, (state, action) => {
+        state.filteredPeople = action.payload;
+      })
+      .addCase(fetchPersonById.fulfilled, (state, action) => {
+        state.personById = action.payload;
+      })
+      .addCase(fetchPersonImagesById.fulfilled, (state, action) => {
+        state.personImagesById = action.payload;
       });
   },
 });
@@ -152,5 +197,8 @@ export const selectTrailerById = (state) => state.movies.trailerById;
 export const selectPopularMovies = (state) => state.movies.popularMovies;
 export const selectUpcomingMovies = (state) => state.movies.upcoming;
 export const selectFavorites = (state) => state.movies.favorites;
-
+export const selectFilteredPeople = (state) => state.movies.filteredPeople;
+export const selectPersonById = (state) => state.movies.personById;
+export const selectPersonImagesById = (state) => state.movies.personImagesById;
+export const selectMoviesImagesById = (state)=> state.movie.imagesById;
 export default movieSlice.reducer;

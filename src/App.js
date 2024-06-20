@@ -12,6 +12,8 @@ import AuthProvider from './components/Auth';
 import TopMenu from './TopMenu';
 import { useState } from 'react';
 import { UserProvider } from './components/UserContext';
+import { BsPeople } from 'react-icons/bs';
+import Peoples from './pages/Peoples';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,6 +31,7 @@ function App() {
             <Route path="trending" element={<Trending />} />
             <Route path="coming" element={<ComingSoon />} />
             <Route path="watchnow/:id" element={<WatchNow />} />
+            <Route path="person/:id" element={<Peoples/>} />
           </Routes>
         </div>
        
