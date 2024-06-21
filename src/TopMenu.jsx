@@ -114,37 +114,39 @@ console.log(correctPeople,333);
           ) : null}
         </div>
         
-        <input
-          className={newInput}
-          ref={inputRef}
-          onChange={(e) => handleInputChange(e.target.value)}
-          value={filmName}
-          onClick={handleModal}
-          placeholder="Search for movies or people..."
-        />
-        <div className={radio}>
-          <label>
-            <input
-              type="radio"
-              name="searchType"
-              value="movies"
-              checked={searchType === 'movies'}
-              onChange={() => setSearchType('movies')}
-            />
-            Movies
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="searchType"
-              value="people"
-              checked={searchType === 'people'}
-              onChange={() => setSearchType('people')}
-            />
-            People
-          </label>
+        <div className="inpput">
+          <input
+            className={newInput}
+            ref={inputRef}
+            onChange={(e) => handleInputChange(e.target.value)}
+            value={filmName}
+            onClick={handleModal}
+            placeholder="Search for movies or people..."
+          />
+          <div className={radio}>
+            <label>
+              <input
+                type="radio"
+                name="searchType"
+                value="movies"
+                checked={searchType === 'movies'}
+                onChange={() => setSearchType('movies')}
+              />
+              Movies
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="searchType"
+                value="people"
+                checked={searchType === 'people'}
+                onChange={() => setSearchType('people')}
+              />
+              People
+            </label>
         </div>
         <HiOutlineMagnifyingGlass onClick={handleInput} className={`icon ${lupa}`} />
+        </div>
         </div>
         <LuBell className='icon' />
         <div className="acount">

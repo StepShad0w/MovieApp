@@ -55,16 +55,15 @@
     max-height: 400px;
     background: rgb(255, 33, 33);
     position: absolute;
-    width: 320px;
-    top: 40px;
+    width: 305px;
+    top: 170%;
     gap: 5px;
-    /* left: 0; */
+    left: 6%;
     /* right: 0; */
     z-index: 2;
     /* border: 1px solid #ccc; */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    right: 100%;
     transition: 0.2s ease-in-out;
   }
   
@@ -119,43 +118,55 @@
 }
 .hide-radio{
     position: absolute;
-    right: -500%;
+    width: 150px;
+    right: -100%;
 }
 .show-radio{
     position: absolute;
-    right: 110%;
-    top: 210%;
-    width: 270px;
-    border-radius: 20px;
-    transition: width 1s ease-in-out;
+    top: 100%;
+    width: 269px;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    transition:.8s ease-in-out;
     padding-left: 30px;
     background-color: rgb(205, 29, 29);
     color: white;
+    border: 2px solid rgb(57, 56, 56);
 }
 .showinput {
-    position: absolute;
-    right: 100%;
-    width: 280px;
+  width: 280px;
     top: -20%;
     transition: width 1s ease-in-out;
     padding-left: 30px;
     background-color: rgb(205, 29, 29);
     color: white;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    /* border: 0; */
+    border-bottom-width: 1px;
+    /* border: 3px; */
+
 }
 .lupa{
-    position: absolute;
     color: rgb(255, 255, 255);
-    right: 417%;
     top: -5%;
     transition: 1s ease-in-out;
+    font-size: 30px;
+    position: relative;
+    left: 10%;
 }
 .white-lupa{
-    position: absolute;
-    top: 10%;
-    right: 80%;
+  margin-right: -30px;
 }
 .input-plus-optional{
     display: flex;
     flex-direction: column;
 
+}
+.inpput{
+  display: flex;
+  width: 330px;
+  flex-direction: row-reverse;
 }
