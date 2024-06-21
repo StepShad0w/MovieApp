@@ -114,7 +114,7 @@ console.log(correctPeople,333);
           ) : null}
         </div>
         
-        <div className="inpput">
+        <div onClo className="inpput">
           <input
             className={newInput}
             ref={inputRef}
