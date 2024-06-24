@@ -58,10 +58,10 @@
     width: 320px;
     top: 180%;
     gap: 5px;
-    left: 6%;
+    /* left: 6%; */
     /* right: 0; */
     z-index: 2;
-    margin-left: 5px;
+    margin-left: 33px;
     border: 1px solid #3c3434;
     box-shadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     /* border-radius: 8px; */
