@@ -1,6 +1,7 @@
 .watch-now{
     width: 1166px;
     margin: 20px;
+    margin-top: 50px;
 }
 .video{
     margin: 60px 10px;
@@ -15,6 +16,7 @@ display: flex;
 flex-direction: column;
 align-content: center;
 align-self: center;
+width: 50%;
 padding-bottom: 60px;
 }
 .h2{
@@ -65,4 +67,11 @@ padding-bottom: 60px;
 }
 .mov-img{
     padding: 10px;
+}
+.person-info{
+    display: flex;
+    gap: 20px;
+}
+.info-block{
+    width: 90%;
 }

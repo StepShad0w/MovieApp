@@ -34,6 +34,7 @@ export default function Peoples() {
     <div className="main-wrapper">
       <div className="menu-windows">
         <div className="menu-window">
+   
           <MainWindow />
         </div>
         <div className="main-div">
@@ -49,6 +50,7 @@ export default function Peoples() {
                     src={`https://image.tmdb.org/t/p/w500${personById.profile_path}`}
                     alt={personById.name}
                   />
+                  </div>
                   <div className="information">
                     <div className="info-block">
                       <p className="details">Name:</p>
@@ -67,7 +69,12 @@ export default function Peoples() {
                       <p className="h3">{personById.biography}</p>
                     </div>
                 </div>
-                  </div>
+                </>
+              ) : (
+                <p>Loading person information...</p>
+              )}
+            </div>
+                  
             <div className="images-box">
               <div className="person-images">
               <Slider {...settings}>
@@ -80,11 +87,6 @@ export default function Peoples() {
                 ))}
                 </Slider>
               </div>
-            </div>
-                </>
-              ) : (
-                <p>Loading person information...</p>
-              )}
             </div>
           </div>
         </div>

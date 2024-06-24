@@ -16,6 +16,7 @@ const TopMenu = () => {
   const filteredPeople = useSelector(selectFilteredPeople);
   const dispatch = useDispatch();
   const inputRef = useRef(null);
+  const modalRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,22 @@ const TopMenu = () => {
       inputRef.current.focus();
     }
   }, [showInput]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target) && inputRef.current && !inputRef.current.contains(event.target)) {
+        setShowInput(false);
+        setNewInput("hideinput");
+        setRadio("hide-radio");
+        setNewModal("hide-modal");
+        setLupa("white-lupa");
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleInputChange = (value) => {
     setFilmName(value);
@@ -45,21 +62,21 @@ const TopMenu = () => {
   };
 
   const [newInput, setNewInput] = useState("hideinput");
-  const [radio, setRadio] = useState('hide-radio')
+  const [radio, setRadio] = useState('hide-radio');
   const [lupa, setLupa] = useState("white-lupa");
   const handleInput = () => {
-    setRadio((prevInput) => (prevInput === "hide-radio" ? "show-radio" : "hide-radio"))
+    setRadio((prevInput) => (prevInput === "hide-radio" ? "show-radio" : "hide-radio"));
     setShowInput(!showInput);
     setNewInput((prevInput) => (prevInput === "hideinput" ? "showinput" : "hideinput"));
     setFilmName('');
-    setNewModal((prevInput) => (prevInput === "hide-modal" ? "movie-list" : "hide-modal"));
+    setNewModal("hide-modal")
     setLupa((prevInput) => (prevInput === "white-lupa" ? "lupa" : "white-lupa"));
   };
 
   const [newModal, setNewModal] = useState("hide-modal");
 
   const handleModal = () => {
-    setNewModal("movie-list");
+    setNewModal("movie-list")
   };
 
   const uniqueMovies = Array.from(new Set(filteredMovies.map((movie) => movie.id)))
@@ -69,8 +86,12 @@ const TopMenu = () => {
   const uniquePeople = Array.from(new Set(filteredPeople.map((person) => person.id)))
     .map((id) => filteredPeople.find((person) => person.id === id));
   const correctPeople = uniquePeople.filter(person => person.profile_path);
-console.log(correctPeople,333);
+
   return (
+    <>
+    <div className="black-fone">
+      
+    </div>
     <div className="menutop">
       <div className="left-row">
         <NavLink to='/Coming' className="navLink">Movies</NavLink>
@@ -78,75 +99,76 @@ console.log(correctPeople,333);
         <p>Documentaries</p>
       </div>
       <div className="right-row">
-          <div className="input-plus-optional">
-        <div className={newModal}>
-          {filmName.length !== 0 ? (
-            searchType === 'movies' ? (
-              correctMovies.map((movie) => (
-                <div key={movie.id} className="movie-item" onClick={() => handleFilmClick(movie)}>
-                  <div className="find">
-                    <img className='movies-find' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                    <div className="desk">
-                      <p className='movie-list-in'>{movie.title}</p>
-                      <p className='date'>{movie.release_date}</p>
+        <div className="input-plus-optional" ref={modalRef}>
+          <div className={newModal}>
+            {filmName.length !== 0 ? (
+              searchType === 'movies' ? (
+                correctMovies.map((movie) => (
+                  <div key={movie.id} className="movie-item" onClick={() => handleFilmClick(movie)}>
+                    <div className="find">
+                      <img className='movies-find' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                      <div className="desk">
+                        <p className='movie-list-in'>{movie.title}</p>
+                        <p className='date'>{movie.release_date}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              correctPeople.map((person) => (
-                <div key={person.id} className="movie-item" onClick={() => handlePersonClick(person)}>
-                  <div className="find">
-                    <img className='movies-find' src={`https://image.tmdb.org/t/p/w200${person.profile_path}`} alt={person.name} />
-                    <div className="desk">
-                      <p className='movie-list-in'>{person.name}</p>
-                      <p className='known-for'>
-                        {person.known_for.map((film, index) => (
-                          <span key={index}>{film.title || film.name}{index < person.known_for.length - 1 ? ', ' : ''}</span>
-                        ))}
-                      </p>
-                      <p>popularity:{person.popularity}</p>
+                ))
+              ) : (
+                correctPeople.map((person) => (
+                  <div key={person.id} className="movie-item" onClick={() => handlePersonClick(person)}>
+                    <div className="find">
+                      <img className='movies-find' src={`https://image.tmdb.org/t/p/w200${person.profile_path}`} alt={person.name} />
+                      <div className="desk">
+                        <p className='movie-list-in'>{person.name}</p>
+                        <p className='known-for'>
+                          {person.known_for.map((film, index) => (
+                            <span key={index}>{film.title || film.name}{index < person.known_for.length - 1 ? ', ' : ''}</span>
+                          ))}
+                        </p>
+                        <p>popularity:{person.popularity}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            )
-          ) : null}
-        </div>
-        
-        <div onClo className="inpput">
-          <input
-            className={newInput}
-            ref={inputRef}
-            onChange={(e) => handleInputChange(e.target.value)}
-            value={filmName}
-            onClick={handleModal}
-            placeholder="Search for movies or people..."
-          />
-          <div className={radio}>
-            <label>
-              <input
-                type="radio"
-                name="searchType"
-                value="movies"
-                checked={searchType === 'movies'}
-                onChange={() => setSearchType('movies')}
-              />
-              Movies
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="searchType"
-                value="people"
-                checked={searchType === 'people'}
-                onChange={() => setSearchType('people')}
-              />
-              People
-            </label>
-        </div>
-        <HiOutlineMagnifyingGlass onClick={handleInput} className={`icon ${lupa}`} />
-        </div>
+                ))
+              )
+            ) : null}
+          </div>
+
+          <div className="inpput">
+            <input
+              className={newInput}
+              ref={inputRef}
+              onChange={(e) => handleInputChange(e.target.value)}
+              value={filmName}
+              // onClick={handleModal}
+              onKeyDown={handleModal}
+              placeholder="Search for movies or people..."
+            />
+            <div className={radio}>
+              <label>
+                <input
+                  type="radio"
+                  name="searchType"
+                  value="movies"
+                  checked={searchType === 'movies'}
+                  onChange={() => setSearchType('movies')}
+                />
+                Movies
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="searchType"
+                  value="people"
+                  checked={searchType === 'people'}
+                  onChange={() => setSearchType('people')}
+                />
+                People
+              </label>
+            </div>
+            <HiOutlineMagnifyingGlass onClick={handleInput} className={`icon ${lupa}`} />
+          </div>
         </div>
         <LuBell className='icon' />
         <div className="acount">
@@ -154,6 +176,7 @@ console.log(correctPeople,333);
         </div>
       </div>
     </div>
+    </>
   );
 };
 
