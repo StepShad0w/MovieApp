@@ -4,7 +4,7 @@ import { toggleFavorite, fetchMovies, selectMovies, selectFavorites, selectFilte
 import Slider from "react-slick";
 import MovieForm from './MovieForm';
 import "../pages/CSS/Movie.css";
-import settings from './Slider';
+import settingsMovies from './Slider';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -45,7 +45,7 @@ export default function Movie() {
     <>
       <div className='container'>
         {movies.length > 0 ? (
-          <Slider {...settings}>
+          <Slider {...settingsMovies}>
             {movies.map((movie, index) => (
               <div className='movie-element' key={index} onClick={() => handleWatchNow(movie)}>
                 <div className='moviehid'>

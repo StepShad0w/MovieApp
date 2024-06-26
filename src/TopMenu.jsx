@@ -6,7 +6,6 @@ import AuthDeteils from './components/AuthDeteils';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredMovies, selectFilteredPeople, fetchSearchPeople, fetchSearch } from './components/slices/MoviesSlicer';
-
 const TopMenu = () => {
   const [showInput, setShowInput] = useState(false);
   const [filmName, setFilmName] = useState('');
@@ -146,26 +145,25 @@ const TopMenu = () => {
               placeholder="Search for movies or people..."
             />
             <div className={radio}>
-              <label>
-                <input
-                  type="radio"
-                  name="searchType"
-                  value="movies"
+             
+              <div class={` pretty p-switch`}>
+        <input type="radio" name="switch1"  value="movies"
                   checked={searchType === 'movies'}
-                  onChange={() => setSearchType('movies')}
-                />
-                Movies
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="searchType"
-                  value="people"
+                  onChange={() => setSearchType('movies')} />
+        <div class="state p-success">
+            <label>Movies</label>
+        </div>
+    </div>
+
+    <div class="pretty p-switch p-fill">
+        <input type="radio" name="switch1" value="people"
                   checked={searchType === 'people'}
-                  onChange={() => setSearchType('people')}
-                />
-                People
-              </label>
+                  onChange={() => setSearchType('people')}/>
+        <div class="state p-success">
+            <label>Peoples</label>
+        </div>
+    </div>
+              
             </div>
             <HiOutlineMagnifyingGlass onClick={handleInput} className={`icon ${lupa}`} />
           </div>

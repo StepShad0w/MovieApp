@@ -11,6 +11,7 @@ const initialState = {
   movies: [],
   trendingMovies: [],
   popularMovies: [],
+  similarMovies:[],
   upcoming: [],
   imagesById: [],
   trailerById: {},
@@ -37,7 +38,7 @@ export const fetchMovies = createAsyncThunk(
 export const fetchTrendingMovies = createAsyncThunk(
   'movies/fetchTrendingMovies',
   async () => {
-    const response = await axios.get(`${BASE_URL}movie/top_rated?api_key=${API_KEY}`);
+    const response = await axios.get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`);
     return response.data.results;
   }
 );
@@ -88,6 +89,15 @@ export const fetchMovieById = createAsyncThunk(
     return response.data;
   }
 );
+
+export const fetchSimilar = createAsyncThunk(
+  'movies/fetchSimilar',
+  async (id) => {
+    const response = await axios.get(`${BASE_URL}movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=${1}`);
+    return response.data.results;
+  }
+);
+
 export const fetchPersonById = createAsyncThunk('movies/fetchPersonById', async (id) => {
   const response = await axios.get(`${BASE_URL}person/${id}?api_key=${API_KEY}`);
   
@@ -172,6 +182,9 @@ const movieSlice = createSlice({
       .addCase(fetchPopularMovies.fulfilled, (state, action) => {
         state.popularMovies = action.payload;
       })
+      .addCase(fetchSimilar.fulfilled, (state, action) => {
+        state.similarMovies = action.payload;
+      })
       .addCase(fetchVideo.fulfilled, (state, action) => {
         state.trailerById = action.payload;
       })
@@ -201,4 +214,5 @@ export const selectFilteredPeople = (state) => state.movies.filteredPeople;
 export const selectPersonById = (state) => state.movies.personById;
 export const selectPersonImagesById = (state) => state.movies.personImagesById;
 export const selectMoviesImagesById = (state)=> state.movie.imagesById;
+export const selectSimilarMovies = (state)=> state.movie.similarMovies;
 export default movieSlice.reducer;

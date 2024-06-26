@@ -7,10 +7,22 @@
     width: 274px;
     display: flex;
     justify-content: space-evenly;
-    gap: 60px;
+    /* gap: 60px; */
     flex-direction: column;
-    position: fixed;
+    position: relative;
+    transition: 1s ease-in-out;
     
+}
+.min-menu{
+    background-color:#21201E ;
+    height: 100%;
+    width: 64px;
+    display: flex;
+    justify-content: space-evenly;
+    /* gap: 60px; */
+    flex-direction: column;
+    position: relative;
+    transition: 1s ease-in-out;
 }
 .mainMenu, .comm, .addmenu{
     display: flex;
@@ -37,13 +49,18 @@
 .element::selection .icon{
     color: rgb(100, 100, 19);
 }
-.element,.watch{
+.element{
     display: flex;
     flex-direction: row;
     gap: 8px;
+    margin-right: -10px;
 }
 .watch{
-    margin-left: -50px;
+    /* margin-left: -50px; */
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    transition: 2s ease-in-out;
 }
 .icon{
     color: white;
@@ -60,4 +77,63 @@ h2{
     align-self: center;
     align-content: center;
     font-size: 50px;
+}
+.bar-menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 30px;
+    gap: 70px;
+    transition: .7s ease-in-out;
+}
+.hide-menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: -10px;
+    margin-right: -60px;
+    gap: 70px;
+    /* visibility: hidden; */
+    align-self: center;
+    transition: .7s ease-in-out;
+}
+.nowatch{
+    margin-top: -150px;
+    margin-left: -100px;
+    gap: 8px;
+   display: flex;
+    transition: 1s ease-in-out;
+    justify-content: start;
+    flex-direction: row-reverse;
+}
+.notext{
+    visibility: hidden;
+}
+.row{
+    width: max-content;
+    position: absolute;
+    right: -3%;
+    top: 13%;
+    display: flex;
+    justify-content: end;
+    /* margin-right: -13px; */
+    z-index: 2;
+    /* background: violet; */
+    transition: 1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+.row-right{
+    width: max-content;
+    position: absolute;
+    right: -10%;
+    top: 13%;
+    transition: 1s ease-in-out;
+    display: flex;
+    justify-content: end;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    /* margin-right: -13px; */
+    z-index: 2;
+    /* background: violet; */
 }
